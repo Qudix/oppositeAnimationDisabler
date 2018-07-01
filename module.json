@@ -1,10 +1,10 @@
 {
-  "id": "zOppositeAnimationDisabler",
+  "id": "oppositeAnimationDisabler",
   "name": "Opposite Animation Disabler",
   "author": "Qudix",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "released": "6/28/2018",
-  "updated": "6/29/2018",
+  "updated": "7/1/2018",
   "description": "Disables the opposite gender animation flag for all affected NPCs.",
   "requires": ["unifiedPatchingFramework"],
   "moduleLoader": "UPF",
