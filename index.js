@@ -1,4 +1,3 @@
-/* global ngapp, xelib */
 registerPatcher({
     info: info,
     gameModes: [xelib.gmTES5, xelib.gmSSE],
@@ -9,7 +8,12 @@ registerPatcher({
     getFilesToPatch: function(filenames) {
         return filenames;
     },
-    execute: (patchFile, helpers, settings, locals) => ({
+    execute: (patch, helpers, settings, locals) => ({
+        initialize: function() {
+            locals = {
+                disabled: 0
+            }
+        },
         process: [{
             load: {
                 signature: 'NPC_',
@@ -18,9 +22,12 @@ registerPatcher({
                 }
             },
             patch: function(record) {
-                helpers.logMessage(`Disabling 'Opposite Gender Anims' for ${xelib.LongName(record)}`);
                 xelib.SetFlag(record, 'ACBS\\Flags', 'Opposite Gender Anims', false); 
+                locals.disabled += 1;
             }
-        }]
+        }],
+        finalize: function() {
+            helpers.logMessage(`Disabled 'Opposite Gender Anims' for ${locals.disabled} records`);
+        }
     })
 });
